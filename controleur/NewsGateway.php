@@ -19,6 +19,12 @@ class NewsGateway
         return $this->con->lastInsertId();
     }
 
+    public function select(string $tableName) :array{
+    //Creer methode select
+
+    }
+
+
     public function update(int $id, string $titre, string $article, string $ref, string $signature)
     {
 
