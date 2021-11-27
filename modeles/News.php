@@ -3,25 +3,25 @@
 class News
 {
     private $id;
+    private $date;
     private $titre;
-    private $article;
-    private $ref;
-    private $signature;
+    private $description;
+    private $link;
 
     /**
      * @param $id
+     * @param $date
      * @param $titre
-     * @param $article
-     * @param $ref
-     * @param $signature
+     * @param $description
+     * @param $link
      */
-    public function __construct($id, $titre, $article, $ref, $signature)
+    public function __construct($id, $date, $titre, $description, $link)
     {
         $this->id = $id;
+        $this->date = $date;
         $this->titre = $titre;
-        $this->article = $article;
-        $this->ref = $ref;
-        $this->signature = $signature;
+        $this->description = $description;
+        $this->link = $link;
     }
 
     /**
@@ -59,49 +59,50 @@ class News
     /**
      * @return mixed
      */
-    public function getArticle()
+    public function getDate()
     {
-        return $this->article;
+        return $this->date;
     }
 
     /**
-     * @param mixed $article
+     * @param mixed $date
      */
-    public function setArticle($article)
+    public function setDate($date): void
     {
-        $this->article = $article;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getRef()
-    {
-        return $this->ref;
-    }
-
-    /**
-     * @param mixed $ref
-     */
-    public function setRef($ref)
-    {
-        $this->ref = $ref;
+        $this->date = $date;
     }
 
     /**
      * @return mixed
      */
-    public function getSignature()
+    public function getDescription()
     {
-        return $this->signature;
+        return $this->description;
     }
 
     /**
-     * @param mixed $signature
+     * @param mixed $description
      */
-    public function setSignature($signature)
+    public function setDescription($description): void
     {
-        $this->signature = $signature;
+        $this->description = $description;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getLink()
+    {
+        return $this->link;
+    }
+
+    /**
+     * @param mixed $link
+     */
+    public function setLink($link): void
+    {
+        $this->link = $link;
+    }
+
 
 }

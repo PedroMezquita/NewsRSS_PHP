@@ -14,14 +14,15 @@ class NewsGateway
 
     public function insert(News $new): int
     {
-        $query = 'INSERT INTO News VALUES(:id, :titre, :article, :ref, :signature)';
-        $this->con->executeQuery($query, array(':id' => array($new->getId(),PDO::PARAM_INT), ':titre' => array($new->getTitre(),PDO::PARAM_STR), ':article' => array($new->getArticle(), PDO::PARAM_STR), ':ref' => array($new->getRef(), PDO::PARAM_STR), ':signature' => array($new->getSignature(), PDO::PARAM_STR)));
+        $query = 'INSERT INTO News VALUES(:id, :titre, :pubDate, :description, :link)';
+        $this->con->executeQuery($query, array(':id' => array($new->getId(),PDO::PARAM_INT), ':titre' => array($new->getTitre(),PDO::PARAM_STR), ':pubDate' => array($new->getDate(), PDO::PARAM_STR), ':description' => array($new->getDescription(), PDO::PARAM_STR), ':link' => array($new->getLink(), PDO::PARAM_STR)));
         return $this->con->lastInsertId();
     }
 
-    public function select(string $tableName) :array{
-    //Creer methode select
-
+    public function selectAll() :string {
+        $query = 'SELECT * FROM News';
+        $this->con->executeQuery($query);
+        return  $this->con->lastInsertId();
     }
 
 
@@ -45,7 +46,7 @@ class NewsGateway
         $resultats = $this->con->getResults();
         foreach ($resultats as $row)
         {
-            $Table_De_News[] = new News($row['id'], $row['titre'], $row['article'], $row['ref'], $row['signature']);
+            $Table_De_News[] = new News($row['id'], $row['date'], $row['titre'], $row['description'], $row['link']);
         }
         return $Table_De_News;
 
