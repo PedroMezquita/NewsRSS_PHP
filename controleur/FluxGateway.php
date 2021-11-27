@@ -1,6 +1,6 @@
 <?php
 
-class NewsGateway
+class FluxGateway
 {
     private $con;
 
@@ -12,20 +12,20 @@ class NewsGateway
         $this->con = $con;
     }
 
-    public function insert(News $new): int
+    public function insert(Flux $flux): int
     {
-        $query = 'INSERT INTO News VALUES(:id, :titre, :pubDate, :description, :link)';
-        $this->con->executeQuery($query, array(':id' => array($new->getId(),PDO::PARAM_INT), ':titre' => array($new->getTitre(),PDO::PARAM_STR), ':pubDate' => array($new->getDate(), PDO::PARAM_STR), ':description' => array($new->getDescription(), PDO::PARAM_STR), ':link' => array($new->getLink(), PDO::PARAM_STR)));
+        $query = 'INSERT INTO News VALUES(:titre, :pubDate, :description, :link, :lang)';
+        $this->con->executeQuery($query, array(':titre' => array($flux->getTitre(),PDO::PARAM_STR), ':pubDate' => array($flux->getDate(), PDO::PARAM_STR), ':description' => array($flux->getDescription(), PDO::PARAM_STR), ':link' => array($flux->getLink(), PDO::PARAM_STR), ':lang' => array($flux->getLang(), PDO::PARAM_STR)));
         return $this->con->lastInsertId();
     }
 
     public function selectAll() :array{
-        $query = 'SELECT * FROM News';
+        $query = 'SELECT * FROM Flux';
         $this->con->executeQuery($query);
 
         $resultats = $this->con->getResults();
         foreach ($resultats as $row){
-            $Tab_All[] = new News($row['id'], $row['titre'], $row['pubDate'], $row['description'], $row['link']);
+            $Tab_All[] = new News($row['titre'], $row['pubDate'], $row['description'], $row['link'], $row['lang']);
         }
         return  $Tab_All;
     }
@@ -35,25 +35,29 @@ class NewsGateway
     {
 
     }
+
+    /* Faut remplacer l'id par le titre
     public function delete(int $id): int
     {
         $query = 'DELETE FROM News WHERE id=:id';
         $this->con->executeQuery($query, array(':id' => array($id, PDO::PARAM_INT)));
         return $this->con->lastInsertId();
     }
+    */
+
     public function FindByTitle(string $title): array
     {
         //preparation et execution de la requete sql (A APPRENDRE)
-        $query='SELECT * FROM News WHERE titre=:title';
+        $query='SELECT * FROM Flux WHERE titre=:title';
         $this->con->executeQuery($query, array(':title' => array($title,PDO::PARAM_STR)));
 
         //conversion en objets
         $resultats = $this->con->getResults();
         foreach ($resultats as $row)
         {
-            $Table_De_News[] = new News($row['id'], $row['date'], $row['titre'], $row['description'], $row['link']);
+            $Table_De_Flux[] = new News($row['date'], $row['titre'], $row['description'], $row['link'], $row['lang']);
         }
-        return $Table_De_News;
+        return $Table_De_Flux;
 
     }
 }

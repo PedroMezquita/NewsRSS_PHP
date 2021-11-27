@@ -15,7 +15,7 @@ class News
      * @param $description
      * @param $link
      */
-    public function __construct($id, $date, $titre, $description, $link)
+    public function __construct($id, $titre, $date, $description, $link)
     {
         $this->id = $id;
         $this->date = $date;
@@ -102,6 +102,11 @@ class News
     public function setLink($link): void
     {
         $this->link = $link;
+    }
+
+    public function __toString()
+    {
+        return "$this->id, $this->titre, $this->date, $this->description, $this->link";
     }
 
 

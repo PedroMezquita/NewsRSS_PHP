@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6deb4+deb9u1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Client :  localhost:3306
--- Généré le :  Jeu 25 Novembre 2021 à 18:19
--- Version du serveur :  10.3.31-MariaDB-0+deb10u1
--- Version de PHP :  7.3.31-1~deb10u1
+-- Servidor: 127.0.0.1:3306
+-- Tiempo de generación: 27-11-2021 a las 21:07:37
+-- Versión del servidor: 5.7.31
+-- Versión de PHP: 7.3.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,42 +18,49 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `news`
+-- Base de datos: `news`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `News`
+-- Estructura de tabla para la tabla `flux`
 --
 
-CREATE TABLE `News` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `flux`;
+CREATE TABLE IF NOT EXISTS `flux` (
+  `titre` varchar(100) NOT NULL,
+  `description` varchar(500) NOT NULL,
+  `link` varchar(150) NOT NULL,
+  `pubDate` date NOT NULL,
+  `lang` varchar(10) NOT NULL,
+  PRIMARY KEY (`titre`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `news`
+--
+
+DROP TABLE IF EXISTS `news`;
+CREATE TABLE IF NOT EXISTS `news` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `titre` varchar(50) NOT NULL,
-  `article` varchar(500) NOT NULL,
-  `ref` varchar(60) NOT NULL,
-  `signature` varchar(40) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `pubDate` date NOT NULL,
+  `description` varchar(500) NOT NULL,
+  `link` varchar(150) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 
 --
--- Index pour les tables exportées
+-- Volcado de datos para la tabla `news`
 --
 
---
--- Index pour la table `News`
---
-ALTER TABLE `News`
-  ADD PRIMARY KEY (`id`);
+INSERT INTO `news` (`id`, `titre`, `pubDate`, `description`, `link`) VALUES
+(1, 'asdf', '2021-11-24', 'adsfasd', 'https://www.w3schools.com/html/tryit.asp?filename=tryhtml_table3');
+COMMIT;
 
---
--- AUTO_INCREMENT pour les tables exportées
---
-
---
--- AUTO_INCREMENT pour la table `News`
---
-ALTER TABLE `News`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
