@@ -1,7 +1,8 @@
+<!--
 <!DOCTYPE html>
 <html>
 <head>
-    <title>AH</title>
+    <title>Ajouter Flux</title>
 </head>
 <body>
 <form action="../index.php" method="post">
@@ -9,6 +10,7 @@
     <input type="date" name="date" />
     <input type="text" name="description" />
     <input type="text" name="link" />
+    <input type="text" name="lang">
     <div>
         <button type="submit">Envoyer</button>
     </div>

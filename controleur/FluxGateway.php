@@ -24,10 +24,14 @@ class FluxGateway
         $this->con->executeQuery($query);
 
         $resultats = $this->con->getResults();
-        foreach ($resultats as $row){
-            $Tab_All[] = new News($row['titre'], $row['pubDate'], $row['description'], $row['link'], $row['lang']);
+        if ($resultats == NULL){ //Si on n'as aucun flux dans la base de données
+            $Tab_All[] = NULL;
+            return $Tab_All;
         }
-        return  $Tab_All;
+        foreach ($resultats as $row){
+            $Tab_All[] = new Flux($row['titre'], $row['pubDate'], $row['description'], $row['link'], $row['lang']);
+        }
+        return $Tab_All;
     }
 
 
@@ -36,14 +40,13 @@ class FluxGateway
 
     }
 
-    /* Faut remplacer l'id par le titre
-    public function delete(int $id): int
+    public function delete(string $titre): int
     {
-        $query = 'DELETE FROM News WHERE id=:id';
-        $this->con->executeQuery($query, array(':id' => array($id, PDO::PARAM_INT)));
+        $query = 'DELETE FROM Flux WHERE titre=:titre';
+        $this->con->executeQuery($query, array(':id' => array($titre, PDO::PARAM_STR)));
         return $this->con->lastInsertId();
     }
-    */
+
 
     public function FindByTitle(string $title): array
     {

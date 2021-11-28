@@ -24,6 +24,10 @@ class NewsGateway
         $this->con->executeQuery($query);
 
         $resultats = $this->con->getResults();
+        if ($resultats == NULL){ //Si on n'as aucun news dans la base de données
+            $Tab_All[] = NULL;
+            return $Tab_All;
+        }
         foreach ($resultats as $row){
             $Tab_All[] = new News($row['id'], $row['titre'], $row['pubDate'], $row['description'], $row['link']);
         }
