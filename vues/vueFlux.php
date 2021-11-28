@@ -6,7 +6,7 @@
     </title>
 </head>
 <body>
-    <form method="get" action="">
+    <form method="get" action="ajoutFlux.php">
         <button> Ajouter RSS </button>
     </form>
     <h1>
@@ -36,7 +36,7 @@ try{
         echo "<table><thread><th>Titre</th><th>Date</th><th>Description</th><th>Link</th></thread></tr><tbody>";
         foreach ($AllFlux as $new){
             $titre = $new->getTitre();
-            $date = $new->getDate();
+            $date = $new->getPubDate();
             $description = $new->getDescription();
             $link = $new->getLink();
             echo "<tr><td><a href='$link'>$titre</a></td><td>$date</td><td>$description</td><td>$link</td></tr>";
