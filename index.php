@@ -14,18 +14,17 @@
 </h1>
 <?php
 
-$dsn = 'mysql:host=localhost;dbname=news'; //A mettre le serveur de base de données qui nous interesse, dans mon cas mysql:host=berlin.iut.local;dbname=dbpemezquita
-$username = 'root'; //nom de l'utilisateur
-$password = 'root'; //mot de passe de l'utilisateur
+require_once(__DIR__."/config/config.php");
 
-include_once("controleur/Connection.php");
-include_once("controleur/NewsGateway.php");
-include_once("modeles/News.php");
-include_once("config/Validation.php");
+include_once(__DIR__."/config/Autoload.php");
+Autoload::charger();
 
+$control = new Controleur();
+
+/*
 $TMessage = [];
 try{
-    $ngw = new NewsGateway(new Connection($dsn, $username, $password));
+    $ngw = new NewsGateway(new Connection($base, $user, $mdp));
 
 
     $AllNews = $ngw->selectAll();
@@ -45,11 +44,10 @@ try{
     }
 
     } catch(PDOException $e){
-        $TMessage = [$e->errorInfo];
+        $TMessage = [$e];
     }
     require('vues/erreur.php');
 
-/*
 try {
     $ngw = new NewsGateway(new Connection($dsn, $username, $password));
     $NewNew = new News(NULL, "Auto", "articleAuto", "refAuto", "Signe:La machine");

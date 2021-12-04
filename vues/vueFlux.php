@@ -17,10 +17,6 @@ $dsn = 'mysql:host=localhost;dbname=news'; //A mettre le serveur de base de donn
 $username = 'root'; //nom de l'utilisateur
 $password = 'root'; //mot de passe de l'utilisateur
 
-include_once("../controleur/Connection.php");
-include_once("../controleur/FluxGateway.php");
-include_once("../modeles/Flux.php");
-include_once("../config/Validation.php");
 
 $TMessage = [];
 try{
@@ -45,7 +41,7 @@ try{
     }
 
 } catch(PDOException $e){
-    $TMessage = [$e->errorInfo];
+    $TMessage = [$e];
 }
 require('erreur.php');
 ?>
