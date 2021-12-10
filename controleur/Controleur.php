@@ -20,8 +20,8 @@ class Controleur
                     $this->Reinit();
                     break;
 
-                case "validationFormulaire":
-                    $this->ValidationFormulaire($TMessages);
+                case "validationFlux":
+                    $this->ValidationFlux($TMessages);
                     break;
 
                 default:
@@ -50,8 +50,21 @@ class Controleur
 
     }
 
-    function ValidationFormulaire(array $TMessage){
+    function ValidationFlux(array $TMessage){
+        global $rep,$vues;
 
+        $titre=$_REQUEST['titre'];
+        $description=$_REQUEST['description'];
+        $link=$_REQUEST['link'];
+        $date=$_REQUEST['date'];
+        $lang=$_REQUEST['lang'];
+        $titre=Validation::CleanString($titre);
+        $link=Validation::CleanString($link);
+        $description=Validation::CleanString($description);
+        $lang=Validation::CleanString($lang);
+        $date=date('Y-m-d', Validation::ValidateDate($date));
+
+        $model = new FluxModel();
 
 
     }

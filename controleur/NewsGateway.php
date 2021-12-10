@@ -1,29 +1,19 @@
 <?php
 
-class NewsGateway
+class NewsGateway extends Connection
 {
-    private $con;
-
-    /**
-     * @param $con
-     */
-    public function __construct(Connection $con)
-    {
-        $this->con = $con;
-    }
-
     public function insert(News $new): int
     {
         $query = 'INSERT INTO news VALUES(:id, :titre, :pubDate, :description, :link)';
-        $this->con->executeQuery($query, array(':id' => array($new->getId(),PDO::PARAM_INT), ':titre' => array($new->getTitre(),PDO::PARAM_STR), ':pubDate' => array($new->getDate(), PDO::PARAM_STR), ':description' => array($new->getDescription(), PDO::PARAM_STR), ':link' => array($new->getLink(), PDO::PARAM_STR)));
-        return $this->con->lastInsertId();
+        $this->executeQuery($query, array(':id' => array($new->getId(),PDO::PARAM_INT), ':titre' => array($new->getTitre(),PDO::PARAM_STR), ':pubDate' => array($new->getDate(), PDO::PARAM_STR), ':description' => array($new->getDescription(), PDO::PARAM_STR), ':link' => array($new->getLink(), PDO::PARAM_STR)));
+        return $this->lastInsertId();
     }
 
     public function selectAll() :array{
         $query = 'SELECT * FROM news';
-        $this->con->executeQuery($query);
+        $this->executeQuery($query);
 
-        $resultats = $this->con->getResults();
+        $resultats = $this->getResults();
         if ($resultats == NULL){ //Si on n'as aucun news dans la base de données
             $Tab_All[] = NULL;
             return $Tab_All;
@@ -42,17 +32,17 @@ class NewsGateway
     public function delete(int $id): int
     {
         $query = 'DELETE FROM news WHERE id=:id';
-        $this->con->executeQuery($query, array(':id' => array($id, PDO::PARAM_INT)));
-        return $this->con->lastInsertId();
+        $this->executeQuery($query, array(':id' => array($id, PDO::PARAM_INT)));
+        return $this->lastInsertId();
     }
     public function FindByTitle(string $title): array
     {
         //preparation et execution de la requete sql (A APPRENDRE)
         $query='SELECT * FROM news WHERE titre=:title';
-        $this->con->executeQuery($query, array(':title' => array($title,PDO::PARAM_STR)));
+        $this->executeQuery($query, array(':title' => array($title,PDO::PARAM_STR)));
 
         //conversion en objets
-        $resultats = $this->con->getResults();
+        $resultats = $this->getResults();
         foreach ($resultats as $row)
         {
             $Table_De_News[] = new News($row['id'], $row['date'], $row['titre'], $row['description'], $row['link']);

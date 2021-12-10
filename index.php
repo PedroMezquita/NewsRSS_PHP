@@ -1,17 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>
-        Flux RSS
-    </title>
-</head>
-<body>
-<form method="get" action="vues/vueFlux.php">
-    <button> RSS </button>
-</form>
-<h1>
-    LISTE DE NEWS
-</h1>
 <?php
 
 require_once(__DIR__."/config/config.php");

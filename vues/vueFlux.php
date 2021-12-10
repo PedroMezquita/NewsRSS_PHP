@@ -6,7 +6,7 @@
     </title>
 </head>
 <body>
-    <form method="get" action="ajoutFlux.php">
+    <form method="get" action="vues/ajoutFlux.php">
         <button> Ajouter RSS </button>
     </form>
     <h1>
