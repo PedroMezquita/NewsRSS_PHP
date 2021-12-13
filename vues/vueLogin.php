@@ -1,21 +1,21 @@
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Ajouter Flux</title>
 </head>
 <body>
-<form action="../index.php?action=ValidationFlux" method="post">
-    <input type="text" name="titre" />
-    <input type="date" name="date" />
-    <input type="text" name="description" />
-    <input type="text" name="link" />
-    <input type="text" name="lang">
+<form action=./vueLogin.php?form="1" method="post">
+    <input type="text" name="pseudo" />
+    <input type="password" name="mdp" />
+    <input type="password" name="mdp2" />
     <div>
         <button type="submit">Envoyer</button>
     </div>
 </form>
 <?php
-/*    if (isset($_REQUEST['form'])){
+    if (isset($_REQUEST['form'])){
+    /*
         try{
 
             $ngw = new FluxGateway(new Connection($base, $user, $mdp));
@@ -26,8 +26,12 @@
         catch (PDOException $e){
             echo "Erreur SQL";
         }
+    */
+
+
+
     }
-*/?>
+?>
 
 </body>
 

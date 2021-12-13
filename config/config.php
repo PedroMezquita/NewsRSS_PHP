@@ -9,4 +9,7 @@ $mdp = 'achanger';
 $vues['erreur']='vues/erreur.php';
 $vues['ajoutFlux']='vues/ajoutFlux.php';
 $vues['vueFlux']='vues/vueFlux.php';
+$vues['vueNews']='vues/vueNews.php';
+$vues['vueLogin']='vues/vueLogin.php';
+
 $vues['index']='index.php';
