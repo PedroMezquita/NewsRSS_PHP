@@ -1,6 +1,6 @@
 <?php
 
-class Controleur
+class ControleurVues
 {
 
     public function __construct()

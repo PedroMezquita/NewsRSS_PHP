@@ -4,7 +4,7 @@ class FrontController
 {
 
     function __construct(){
-        $listeActions_Vues = array();
+        $listeActions_Vues = array("VueFlux", "VueLogin", "VueAjoutFlux", "Parser", NULL);
 
         try{
             $action = $_REQUEST['action'];

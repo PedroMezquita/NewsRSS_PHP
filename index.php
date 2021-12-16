@@ -8,7 +8,7 @@ Autoload::charger();
 
 
 
-$control = new Controleur();
+$control = new FrontController();
 
 /*
 $TMessage = [];
