@@ -10,10 +10,10 @@ global $rep, $vues, $TMessage;
     </title>
 </head>
 <body>
-    <form method="get" action="index.php?action=">
+    <form method="post" action="index.php?action=VueFlux">
         <button> Voir flux RSS </button>
     </form>
-    <form method="get" action="<?= $vues['vueLogin'] ?>">
+    <form method="post" action="index.php?action=VueLogin">
         <button> Login </button>
     </form>
 
@@ -23,6 +23,19 @@ global $rep, $vues, $TMessage;
 </h1>
 <?php
 
+    if (isset($news)){
+
+        echo "<table><thread><th>Titre</th><th>Date</th><th>Description</th><th>Link</th></thread></tr><tbody>";
+        foreach ($news as $new){
+            $titre = $new->getTitre();
+            $date = $new->getDate();
+            $description = $new->getDescription();
+            $link = $new->getLink();
+            echo "<tr><td><a href='$link'>$titre</a></td><td>$date</td><td>$description</td><td>$link</td></tr>";
+        }
+        echo "</tbody></table>";
+
+    }
 
 /*
 try{

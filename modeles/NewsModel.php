@@ -8,7 +8,10 @@ class NewsModel
         $this->gwNews = new NewsGateway();
     }
 
-
+    public function get_News(): array
+    {
+        return $this->gwNews->selectAll();
+    }
 
 
 

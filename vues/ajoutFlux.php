@@ -4,7 +4,7 @@
     <title>Ajouter Flux</title>
 </head>
 <body>
-<form action="../index.php?action=ValidationFlux" method="post">
+<form action="index.php?action=ValidationFlux" method="post">
     <input type="text" name="titre" />
     <input type="date" name="date" />
     <input type="text" name="description" />
