@@ -1,5 +1,5 @@
 <?php
-foreach ($TMessage as $value){
+foreach ($TMessages as $value){
     echo "<br> <h3> Erreur : $value </h3> ";
 }
 

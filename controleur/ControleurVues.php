@@ -7,7 +7,7 @@ class ControleurVues
     {
         global $rep,$vues;
 
-        session_start();
+
 
         $TMessages = array();
 
@@ -42,7 +42,7 @@ class ControleurVues
 
                 default:
                     $TMessages[] = "Erreur d'appel php";
-                    require($rep.$vues['index.php']);
+                    require($rep.$vues['erreur']);
                     break;
             }
         } catch(PDOException $e){
@@ -76,26 +76,7 @@ class ControleurVues
 
 
 
-    function ValidationFlux(array $TMessage){
 
-        $titre=$_POST['titre'];
-        $description=$_POST['description'];
-        $link=$_POST['link'];
-        $date=$_POST['date'];
-        $lang=$_POST['lang'];
-        $titre=Validation::CleanString($titre);
-        $link=Validation::CleanString($link);
-        $description=Validation::CleanString($description);
-        $lang=Validation::CleanString($lang);
-        $date=date('Y-m-d', Validation::ValidateDate($date));
-
-        $model = new FluxModel();
-
-
-        $reussite = $model->set_flux($titre, $description, $link, $date, $lang);
-        echo "Message de retour: $reussite";
-        $this->vueFlux();
-    }
 
 
     function vueFlux(){

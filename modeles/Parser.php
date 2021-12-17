@@ -4,5 +4,6 @@ include($rep."rss.php");
 
 $news = new SimpleXMLElement($xmlstr);
 
+var_dump($news);
 
-echo $news->item;
+echo $news->title;
