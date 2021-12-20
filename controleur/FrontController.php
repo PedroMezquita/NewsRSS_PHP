@@ -5,7 +5,7 @@ class FrontController
 
     function __construct(){
         $listeActions_Vues = array("VueFlux", "VueLogin", "VueAjoutFlux", "Parser", NULL);
-        $listeActions_Admin = array("Login", "ValidationFlux");
+        $listeActions_Admin = array("Login", "ValidationFlux", "SupprimmerFlux");
 
         session_start();
 

@@ -13,14 +13,20 @@ global $rep, $vues;
     <form method="post" action="index.php?action=VueAjoutFlux">
         <button> Ajouter RSS </button>
     </form>
+    <form method="post" action="index.php?action=">
+        <button> Retour </button>
+    </form>
     <h1>
         LISTE DE FLUX RSS
     </h1>
 <?php
     if (isset($tabFlux)) {
-        foreach ($tabFlux as $flux) {
-            echo $flux->getTitre(), "\n";
+        echo "<table><thread><th>Titre</th>><th>Supprimmer</th></thread></tr><tbody>";
+        foreach ($tabFlux as $flux){
+            $titre = $flux->getTitre();
+            echo "<tr><td>$titre</td><td><form method='post' action='index.php?action=SupprimmerFlux&flux=$titre'><button>X</button></form></td></tr>";
         }
+        echo "</tbody></table>";
     }
 
 

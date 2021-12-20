@@ -13,6 +13,10 @@
         <button type="submit">Envoyer</button>
     </div>
 </form>
+<form method="post" action="index.php?action=">
+    <button> Retour </button>
+</form>
+
 <?php
     if (isset($_REQUEST['form'])){
     /*

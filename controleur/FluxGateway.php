@@ -35,7 +35,7 @@ class FluxGateway extends Connection
     public function delete(string $titre): int
     {
         $query = 'DELETE FROM Flux WHERE titre=:titre';
-        $this->executeQuery($query, array(':id' => array($titre, PDO::PARAM_STR)));
+        $this->executeQuery($query, array(':titre' => array($titre, PDO::PARAM_STR)));
         return $this->lastInsertId();
     }
 

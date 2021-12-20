@@ -22,6 +22,10 @@ class ControleurAdmin
                     $this->ValidationFlux($TMessages);
                     break;
 
+                case "SupprimmerFlux":
+                    $this->SupprimmerFlux($TMessages);
+                    break;
+
 
                 default:
                     $TMessages[] = "Erreur d'appel php";
@@ -30,6 +34,7 @@ class ControleurAdmin
             }
         } catch(PDOException $e){
             $TMessages[] = "Erreur inattendue PDO!!! ";
+            echo "$e";
             require ($rep.$vues['erreur']);
         } catch (Exception $e2){
             $TMessages[] = "Erreur inattendue!!! ";
@@ -39,6 +44,19 @@ class ControleurAdmin
         exit(0);
     }
 
+
+    function SupprimmerFlux(array $TMessage){
+
+        global $rep, $vues;
+
+        $titre = $_REQUEST['flux'];
+        $model = new FluxModel();
+        $retour = $model->rem_flux($titre);
+        var_dump($retour);
+
+        require ($rep.$vues['vueFlux']);
+
+    }
 
     function ValidationFlux(array $TMessage){
         global $rep,$vues;
@@ -56,9 +74,14 @@ class ControleurAdmin
 
         $model = new FluxModel();
 
-
         $reussite = $model->set_flux($titre, $description, $link, $date, $lang);
-        echo "Message de retour: $reussite";
+        if($reussite == 0){
+            echo "Ajout du flux reussi";
+        } else{
+            echo "ajout du flux rate";
+        }
+
+
         require ($rep.$vues['vueFlux']); //A regler
     }
 

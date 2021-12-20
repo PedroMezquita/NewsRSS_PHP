@@ -19,5 +19,9 @@ class FluxModel
         return $this->gwFlux->insert($titre, $description, $link, $date, $lang);
     }
 
+    public function rem_flux(string $titre): int
+    {
+        return $this->gwFlux->delete($titre);
+    }
 
 }
