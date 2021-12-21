@@ -10,8 +10,37 @@ class Admin
         $this->pseudo = $pseudo;
     }
 
-    public function login(){
-
+    /**
+     * @return string
+     */
+    public function getPseudo(): string
+    {
+        return $this->pseudo;
     }
+
+    /**
+     * @param string $pseudo
+     */
+    public function setPseudo(string $pseudo): void
+    {
+        $this->pseudo = $pseudo;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMdp(): string
+    {
+        return $this->mdp;
+    }
+
+    /**
+     * @param string $mdp
+     */
+    public function setMdp(string $mdp): void
+    {
+        $this->mdp = $mdp;
+    }
+
 
 }

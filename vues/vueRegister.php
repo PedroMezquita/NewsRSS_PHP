@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Login V8</title>
+    <title>Creer une compte</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
@@ -30,41 +30,45 @@
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100">
-            <form class="login100-form validate-form p-l-55 p-r-55 p-t-178" action="index.php?action=Login" method="post">
+            <form class="login100-form validate-form p-l-55 p-r-55 p-t-178" action="index.php?action=Register" method="post">
 					<span class="login100-form-title">
-						Login
+						Creer une compte
 					</span>
 
-                <div class="wrap-input100 validate-input m-b-16" data-validate="Please enter username">
+                <div class="wrap-input100 validate-input m-b-16" data-validate="Entrez votre pseudo">
                     <input class="input100" type="text" name="pseudo" placeholder="Pseudo">
                     <span class="focus-input100"></span>
                 </div>
 
-                <div class="wrap-input100 validate-input" data-validate = "Please enter password">
+                <div class="wrap-input100 validate-input" data-validate = "Entrez votre mot de passe">
                     <input class="input100" type="password" name="mdp" placeholder="Mot de passe">
+                    <span class="focus-input100"></span>
+                </div>
+                <br>
+                <div class="wrap-input100 validate-input" data-validate = "Verifiez votre mot de passe">
+                    <input class="input100" type="password" name="mdp2" placeholder="Verifier votre mot de passe">
                     <span class="focus-input100"></span>
                 </div>
 
                 <div class="text-right p-t-13 p-b-23">
-						<br>
+                    <br>
                 </div>
 
                 <div class="container-login100-form-btn">
                     <button class="login100-form-btn">
-                        Se connecter
+                        Créer le compte
                     </button>
                 </div>
 
                 <div class="flex-col-c p-t-170 p-b-40">
 						<span class="txt1 p-b-9">
-							Vous n'avez pas de compte ?
+							Vous avez deja une compte ?
 						</span>
 
-                    <a href="index.php?action=VueRegister" class="txt3">
-                        Creer une compte
+                    <a href="index.php?action=VueLogin" class="txt3">
+                        Se connecter
                     </a>
                 </div>
-
             </form>
         </div>
     </div>
@@ -91,46 +95,5 @@
 </body>
 </html>
 
-<!--
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Ajouter Flux</title>
-</head>
-<body>
-<form action=./vueLogin.php?form="1" method="post">
-    <input type="text" name="pseudo" />
-    <input type="password" name="mdp" />
-    <input type="password" name="mdp2" />
-    <div>
-        <button type="submit">Envoyer</button>
-    </div>
-</form>
-<form method="post" action="index.php?action=">
-    <button> Retour </button>
-</form>
-
 <?php
-//   if (isset($_REQUEST['form'])){
-//
-//        try{
-//
-//            $ngw = new FluxGateway(new Connection($base, $user, $mdp));
-//
-//            $i = $ngw->insert($_REQUEST['titre'], $_REQUEST['description'], $_REQUEST['link'], $_REQUEST['date'], $_REQUEST['lang']);
-//            echo "Succes d'ajout SSL";
-//        }
-//        catch (PDOException $e){
-//            echo "Erreur SQL";
-//        }
-//
-//
-//
-//
-//    }
 ?>
-
-</body>
-
-</html>
--->

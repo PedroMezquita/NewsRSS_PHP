@@ -28,6 +28,10 @@ class ControleurVues
                     $this->vueLogin();
                     break;
 
+                case "VueRegister":
+                    $this->vueRegister();
+                    break;
+
                 case "ValidationFlux":
                     $this->ValidationFlux($TMessages);
                     break;
@@ -74,11 +78,6 @@ class ControleurVues
 
 
 
-
-
-
-
-
     function vueFlux(){
         global $rep,$vues;
         $model = new FluxModel();
@@ -92,6 +91,12 @@ class ControleurVues
         global $rep, $vues;
         require ($rep.$vues['vueLogin']);
 
+    }
+
+
+    function  vueRegister(){
+        global $rep, $vues;
+        require ($rep.$vues['vueRegister']);
     }
 
     function vueAjoutFlux(){

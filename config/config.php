@@ -15,5 +15,6 @@ $vues['ajoutFlux']='vues/ajoutFlux.php';
 $vues['vueFlux']='vues/vueFlux.php';
 $vues['vueNews']='vues/vueNews.php';
 $vues['vueLogin']='vues/vueLogin.php';
+$vues['vueRegister']='vues/vueRegister.php';
 
 $vues['index']='index.php';
