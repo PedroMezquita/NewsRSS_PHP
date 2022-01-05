@@ -39,11 +39,6 @@ class ControleurVues
                     $this->VueAjoutFlux();
                     break;
 
-                case "Parser":
-                    $this->Parser();
-                    break;
-
-
                 default:
                     $TMessages[] = "Erreur d'appel php";
                     require($rep.$vues['erreur']);
@@ -70,8 +65,21 @@ class ControleurVues
 
     function getNews(){
         global $rep,$vues,$TMessage;
+        if(isset($_REQUEST['max'])){
+            $max = $_REQUEST['max'];
+            $min = $max-10;
+        }else{
+            $max = 10;
+            $min = 0;
+        }
+        if($min < 0){
+            $max = 10;
+            $min = 0;
+        }
         $model = new NewsModel();
-        $news = $model->get_News();
+
+
+        $news = $model->get_News($max, $min);
         require ($rep.$vues['vueNews']);
 
     }
@@ -101,14 +109,9 @@ class ControleurVues
 
     function vueAjoutFlux(){
         global $rep, $vues;
-        require ($rep.$vues['ajoutFlux']);
+        require ($rep.$vues['parser']);
     }
 
-
-    function Parser(){
-        global $rep;
-        require ($rep."modeles/Parser.php");
-    }
 
 
 

@@ -18,9 +18,10 @@ class ControleurAdmin
                     break;
 
 
-                case "ValidationFlux":
-                    $this->ValidationFlux($TMessages);
+                case "AjoutFlux":
+                    $this->AjoutFlux($TMessages);
                     break;
+
 
                 case "SupprimmerFlux":
                     $this->SupprimmerFlux($TMessages);
@@ -28,6 +29,10 @@ class ControleurAdmin
 
                 case "Register":
                     $this->Register($TMessages);
+                    break;
+
+                case "Deconnecter":
+                    $this->Deconnecter();
                     break;
 
                 case "Login":
@@ -52,7 +57,12 @@ class ControleurAdmin
         exit(0);
     }
 
-
+    /*Nom: SupprimmerFlux
+     * Parametres: array $TMessage
+     * Retourne: int
+     * Ceci ajoute un administrateur dans la basse de données
+     *
+     */
     function SupprimmerFlux(array $TMessage){
 
         global $rep, $vues;
@@ -60,7 +70,10 @@ class ControleurAdmin
             $titre = $_REQUEST['flux'];
             $model = new FluxModel();
             $retour = $model->rem_flux($titre);
-            var_dump($retour);
+            if($retour != 0){
+                $TMessage = $retour;
+                require ($rep.$vues['erreur']);
+            }
 
             require($rep.$vues['vueFlux']);
         }
@@ -70,14 +83,8 @@ class ControleurAdmin
         }
     }
 
-    function ValidationFlux(array $TMessage){
+    function ValidationFlux($titre, $description, $link, $date, $lang){
         global $rep,$vues;
-
-        $titre=$_POST['titre'];
-        $description=$_POST['description'];
-        $link=$_POST['link'];
-        $date=$_POST['date'];
-        $lang=$_POST['lang'];
         $titre=Validation::CleanString($titre);
         $link=Validation::CleanString($link);
         $description=Validation::CleanString($description);
@@ -87,15 +94,70 @@ class ControleurAdmin
         $model = new FluxModel();
 
         $reussite = $model->set_flux($titre, $description, $link, $date, $lang);
-        if($reussite == 0){
-            echo "Ajout du flux reussi";
-        } else{
+        if($reussite != 0){
             echo "ajout du flux rate";
         }
-
-
-        require ($rep.$vues['vueFlux']); //A regler
     }
+
+    function ValidationNews($news){
+        global $rep,$vues;
+
+        $titre = $news->getTitre();
+        $description = $news->getDescription();
+        $link = $news->getLink();
+        $date = $news->getDate();
+
+
+        $titre=Validation::CleanString($titre);
+        $link=Validation::CleanString($link);
+        $description=Validation::CleanString($description);
+        $date=date('Y-m-d', Validation::ValidateDate($date));
+
+        $model = new NewsModel();
+
+        $reussite = $model->set_News($news);
+        if($reussite != 0){
+            echo "ajout des news rate";
+        }
+    }
+
+
+    function Deconnecter(){
+        global $rep, $vues;
+        unset($_SESSION['sessionUser']);
+        require ($rep.$vues['vueLogin']);
+    }
+
+
+
+
+    function AjoutFlux(array $TMessage){
+        global $rep, $vues;
+        if (isset($_SESSION['sessionUser'])) {
+
+            $url = $_REQUEST['link'];
+            $url=Validation::CleanString($url);
+            $Parser = new Parser();
+            $AllFlux = $Parser->parser($url);
+            $date = date("Y-m-d");
+
+            $this->ValidationFlux($AllFlux['FluxTitre'], $AllFlux['FluxDescription'], $AllFlux['FluxLink'], $date, $AllFlux['FluxLang']);
+
+            foreach($AllFlux['AllNews'] as $news){
+                $this->ValidationNews($news);
+            }
+
+            require($rep.$vues['vueFlux']);
+        }
+        else{
+            echo "Vous devez etre administrateur pour ajouter un flux";
+            require ($rep.$vues['vueLogin']);
+        }
+        require ($rep.$vues['vueFlux']);
+    }
+
+
+
 
 
     function Register(array $TMessage){

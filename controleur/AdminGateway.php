@@ -2,6 +2,12 @@
 
 class AdminGateway extends Connection
 {
+    /*Nom: instert
+     * Parametres: Admin $admin
+     * Retourne: int
+     * Ceci ajoute un administrateur dans la basse de données
+     *
+     */
     public function insert(Admin $admin): int
     {
         $query = 'INSERT INTO adminn VALUES(:pseudo, :mdp)';
@@ -26,11 +32,13 @@ class AdminGateway extends Connection
     }*/
 
 
-    public function update(int $id, string $titre, string $article, string $ref, string $signature)
-    {
 
-    }
-
+    /*Nom: delete
+     * Parametres: int id
+     * Retourne: int
+     * Ceci supprimme un administrateur de la basse de données
+     *
+     */
     public function delete(int $id): int
     {
         $query = 'DELETE FROM adminn WHERE pseudo=:pseudo';
@@ -38,6 +46,12 @@ class AdminGateway extends Connection
         return $this->lastInsertId();
     }
 
+    /*Nom: FindByPseudo
+ * Parametres: string $pseudo
+ * Retourne: Admin
+ * Trouve un administrateur grace au pseudo dans la base de donnees
+ *
+ */
     public function FindByPseudo(string $pseudo): Admin
     {
         //preparation et execution de la requete sql (A APPRENDRE)

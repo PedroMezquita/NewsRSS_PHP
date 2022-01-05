@@ -9,10 +9,10 @@ class NewsGateway extends Connection
         return $this->lastInsertId();
     }
 
-    public function selectAll(): array
+    public function selectAll(int $max, int $min): array
     {
-        $query = 'SELECT * FROM news';
-        $this->executeQuery($query);
+        $query = 'SELECT * FROM news LIMIT :max OFFSET :min';
+        $this->executeQuery($query, array(':max' => array($max, PDO::PARAM_INT), ':min' => array($min, PDO::PARAM_INT)));
 
         $resultats = $this->getResults();
         if ($resultats == NULL) { //Si on n'as aucun news dans la base de données

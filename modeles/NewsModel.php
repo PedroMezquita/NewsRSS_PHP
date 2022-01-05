@@ -8,9 +8,14 @@ class NewsModel
         $this->gwNews = new NewsGateway();
     }
 
-    public function get_News(): array
+    public function get_News($max, $min): array
     {
-        return $this->gwNews->selectAll();
+        return $this->gwNews->selectAll($max, $min);
+    }
+
+    public function set_News($news): int
+    {
+        return $this->gwNews->insert($news);
     }
 
 
